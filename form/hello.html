@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>Document</title>
+	
+</head> 
+<body>
+
+<script src="http://cdn.bootcss.com/crypto-js/3.1.2/components/core.js"></script>
+<script src="http://cdn.bootcss.com/crypto-js/3.1.2/components/enc-base64.js"></script>
+<script src="https://cdn.bootcss.com/crypto-js/3.1.2/rollups/tripledes.js"></script>
+<script src="https://cdn.bootcss.com/crypto-js/3.1.2/components/mode-ecb.js"></script>
+<script src="https://cdn.bootcss.com/crypto-js/3.1.2/components/pad-nopadding.js"></script>
+		
+	<script type="text/javascript">
+		var bkey = 'Hello';
+	    function decryptByTDES(message, key){
+	    	var keyHex = CryptoJS.enc.Base64.parse(key);
+	    	var decrypted = CryptoJS.TripleDES.decrypt(message, keyHex, {
+	    		iv: keyHex,
+	    		mode: CryptoJS.mode.CBC,
+	    		padding: CryptoJS.pad.Pkcs7
+	    	});
+		return decrypted.toString(CryptoJS.enc.Utf8)
+		}
+	    function encryptByTDES(message, key){
+	    	//var keyHex = CryptoJS.enc.Utf8.parse(key);
+	    	var keyHex = CryptoJS.enc.Base64.parse(key);
+	    	var encryptd = CryptoJS.TripleDES.encrypt(message, keyHex, {
+	    		iv: keyHex,
+	    		mode: CryptoJS.mode.CBC,
+	    		padding: CryptoJS.pad.Pkcs7
+	    	});
+	    	//console.log(encrypted.ciphertext.toString());
+	    	return encryptd.toString();
+	    }
+	    console.log('olleH ', encryptByTDES('olleH', bkey));
+	    console.log('JGXYl/4qAAo= ', decryptByTDES('JGXYl/4qAAo=', bkey));
+		//console.log('test ', decryptByTDES('olleH', bkey));JGXYl/4qAAo=
+	</script>
+</body>
+</html>

@@ -41,6 +41,7 @@
       </nav>
     </header><!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -132,30 +133,29 @@
               </div><!-- /.box-header -->
               <!-- form start -->
               <div class="box-body">
-                Kelompok 1 : <br />
-Naufal Hakim Syahputra (201581002) <br />
-Amin Hamzah (201581027)  <br />   
-Aditiyawan Chandra(201581110)<br />
-Aditya Rizky Gustian (201581003)  <br />  
-Ida Bagus Agung Udayana (201581056) <br />
-Rifal Raifudin Restu (201581013)<br />
-Revando Prasetya (201581016)   <br /> 
-Wihlarko Prasdegdho (201581030)<br />
-Yusuf Bagus Triatmojo (201581087)<br />
+                Kelompok 4 : <br />
+Destian Gilang Satrianto (201581090) <br />
+Indri Yanti (201581109)  <br />   
+Susan (201581018) <br />
+Lia Nuriyah (201581089)  <br />  
+Ratna Dewi Pratiwi (201581036) <br />
+Nur Alif (201581044) <br />
+Wahyu Adjie Prasetyo (201581025) <br /> 
+Windo Yofena (201581010) <br />
+Bambang Muhammad Syafi’i (201581052) <br />
               </div><!-- /.box-body -->
             </div>
-
             <div class="box box-primary">
               
               <div class="box-header with-border">
                 
-                <h3 class="box-title">Enkripsi DES</h3>
+                <h3 class="box-title">Dekripsi Triple DES</h3>
               </div><!-- /.box-header -->
               <!-- form start -->
               <div class="box-body">
                 
                 <div class="form-group">
-                  <label for="message">Message</label> <input class="form-control" id="message" placeholder="Message" type="text">
+                  <label for="message">CipherText</label> <input class="form-control" id="message" placeholder="Cipher Text" type="text">
                 </div>
                 <div class="form-group">
                   <label for="key">Key</label> <input class="form-control" id="key" placeholder="Key" type="text">
@@ -175,15 +175,13 @@ Yusuf Bagus Triatmojo (201581087)<br />
               <div class="box-body" id="">
                 <div class="alert alert-success alert-dismissible" id="alertsuccess" style="display: none;">
                   <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
-                  <h4><i class="icon fa fa-check"></i> Enkripsi Berhasil!</h4>Hasil Enkripsi Adalah :
+                  <h4><i class="icon fa fa-check"></i> Dekripsi Berhasil!</h4>Message Anda Adalah :
                   <div id="hasil"></div>
                 </div>
                 <div class="alert alert-error alert-dismissible" id="alertgagal" style="display: none;">
                   <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
-                  <h4><i class="icon fa fa-check"></i> Enkripsi Gagal!</h4>
-                  <div id="messageerr">
-                    Wajib Diisi
-                  </div>
+                  <h4><i class="icon fa fa-check"></i> Dekripsi Gagal!</h4>
+                  <div id="messageerr"></div>
                 </div>
               </div>
             </div><!-- /.box -->
@@ -242,11 +240,12 @@ Yusuf Bagus Triatmojo (201581087)<br />
   </script> 
   <script src="../../proses/binaryconverter.js">
   </script> 
-  <script src="../../cryptojs/rollups/tripledes.js">
-  </script> 
-  <script src="../../cryptojs/components/mode-ecb.js">
-  </script> 
-  <script src="../../proses/des.js" type="text/javascript">
+<script src="http://cdn.bootcss.com/crypto-js/3.1.2/components/core.js"></script>
+<script src="http://cdn.bootcss.com/crypto-js/3.1.2/components/enc-base64.js"></script>
+<script src="https://cdn.bootcss.com/crypto-js/3.1.2/rollups/tripledes.js"></script>
+<script src="https://cdn.bootcss.com/crypto-js/3.1.2/components/mode-ecb.js"></script>
+<script src="https://cdn.bootcss.com/crypto-js/3.1.2/components/pad-nopadding.js"></script>
+  <script src="../../proses/triple-des.js" type="text/javascript">
   </script> 
   <script type="text/javascript">
      $("#submitButton").click(function() {
@@ -257,7 +256,7 @@ Yusuf Bagus Triatmojo (201581087)<br />
          var nkey = key.length;
          if (nkey % 8 == 0) {
              $("#alertsuccess").show();
-             $("#hasil").html(encryptByDES(message, key));
+             $("#hasil").html(decryptByTDES(message, key));
          } else {
              $("#alertgagal").show();
              $("#messageerr").html("Key harus berjumlah kelipatan 8 (8,16,32,...)");
